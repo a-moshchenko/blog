@@ -48,8 +48,9 @@
                             <a class="nav-link text-black font-weight-bold" href="{% url 'post_new' %}">Add Post</a>
                         </li>
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">login</a>
-                        </li>
+                          <form action="{% url 'search_results' %}" method="get">
+                            <input name="q" type="text" placeholder="Search...">
+                          </form>                        </li>
                         <li class="nav-item text-black">
                             <a class="nav-link text-black font-weight-bold" href="#">register</a>
                         </li>

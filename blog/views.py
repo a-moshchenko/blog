@@ -4,6 +4,7 @@ from .forms import PostForm
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.db.models import Q
 
 
 class PostList(ListView):
@@ -20,6 +21,13 @@ class PostDetail(DetailView):
 class SearchResultsView(ListView):
     model = Post
     template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Post.objects.filter(
+                    Q(title__icontains=query) | Q(content__icontains=query)
+        )
+        return object_list
 
 
 def post_new(request):

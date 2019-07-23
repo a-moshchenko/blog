@@ -1,4 +1,4 @@
-from django.views import generic
+from django.views.generic import ListView, DetailView
 from .models import Post
 from .forms import PostForm
 from django.shortcuts import render
@@ -6,15 +6,20 @@ from django.shortcuts import redirect
 from django.utils import timezone
 
 
-class PostList(generic.ListView):
+class PostList(ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 3
 
 
-class PostDetail(generic.DetailView):
+class PostDetail(DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+
+class SearchResultsView(ListView):
+    model = Post
+    template_name = 'search_results.html'
 
 
 def post_new(request):

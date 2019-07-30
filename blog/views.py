@@ -25,7 +25,7 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = Post.objects.filter(
-                    Q(title__icontains=query) | Q(content__icontains=query)
+            Q(title__icontains=query) | Q(content__icontains=query)
         )
         return object_list
 
@@ -57,3 +57,9 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'post_edit.html', {'form': form})
+
+
+def post_remove(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect('home')

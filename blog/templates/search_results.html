@@ -30,7 +30,6 @@
 </header>
 <div class="container">
     <div class="row">
-        <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
             {% for post in object_list %}
             <div class="card mb-4">
@@ -38,14 +37,12 @@
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.Author }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.content|slice:":200" }}</p>
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'post_detail' pk=post.pk  %}" class="btn btn-outline-primary">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
 
+
         </div>
         {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
-
-    </div>
-</div>
 {%endblock%}

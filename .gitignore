@@ -1,0 +1,9 @@
+* .pyc
+.idea /
+__pycache__ /
+.mypy_cache /
+.ropeproject /
+.venv /
+Venv /
+.coverage
+* .sqlite3

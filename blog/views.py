@@ -40,6 +40,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.created_on = timezone.now()
+            post.image = request.image
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
